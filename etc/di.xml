@@ -6,53 +6,12 @@
 
     <type name="EcommPro\CustomCurrency\Model\Config">
         <arguments>
-            <argument name="currencies" xsi:type="array">                
-                <item name="BTC" xsi:type="array">
-                    <item name="code" xsi:type="string">BTC</item>
-                    <item name="singular" xsi:type="string">Bitcoin</item>
-                    <item name="plural" xsi:type="string">Bitcoins</item>
+            <argument name="currencies" xsi:type="array">
+                <item name="XMPL" xsi:type="array">
+                    <item name="code" xsi:type="string">XMPL</item>
+                    <item name="singular" xsi:type="string">Examplium</item>
+                    <item name="plural" xsi:type="string">Exampliums</item>
                 </item>
-                <item name="ETH" xsi:type="array">
-                    <item name="code" xsi:type="string">ETH</item>
-                    <item name="singular" xsi:type="string">Ethereum</item>
-                    <item name="plural" xsi:type="string">Ethereums</item>
-                </item>
-                <item name="BCH" xsi:type="array">
-                    <item name="code" xsi:type="string">BCH</item>
-                    <item name="singular" xsi:type="string">Bitcoin Cash</item>
-                    <item name="plural" xsi:type="string">Bitcoins Cash</item>
-                </item>
-                <item name="XRP" xsi:type="array">
-                    <item name="code" xsi:type="string">XRP</item>
-                    <item name="singular" xsi:type="string">Ripple</item>
-                    <item name="plural" xsi:type="string">Ripples</item>
-                </item>
-                <item name="BTG" xsi:type="array">
-                    <item name="code" xsi:type="string">BTG</item>
-                    <item name="singular" xsi:type="string">Bitcoin Gold</item>
-                    <item name="plural" xsi:type="string">Bitcoins Gold</item>
-                </item>
-                <item name="DASH" xsi:type="array">
-                    <item name="code" xsi:type="string">DASH</item>
-                    <item name="singular" xsi:type="string">Dash</item>
-                    <item name="plural" xsi:type="string">Dash</item>
-                </item>
-                <item name="LTC" xsi:type="array">
-                    <item name="code" xsi:type="string">LTC</item>
-                    <item name="singular" xsi:type="string">Litecoin</item>
-                    <item name="plural" xsi:type="string">Litecoins</item>
-                </item>
-                <item name="IOTA" xsi:type="array">
-                    <item name="code" xsi:type="string">IOTA</item>
-                    <item name="singular" xsi:type="string">IOTA</item>
-                    <item name="plural" xsi:type="string">IOTAs</item>
-                </item>
-                <item name="ETC" xsi:type="array">
-                    <item name="code" xsi:type="string">ETC</item>
-                    <item name="singular" xsi:type="string">Ethereum Classic</item>
-                    <item name="plural" xsi:type="string">Ethereums Classic</item>
-                </item>
-
             </argument>
         </arguments>
     </type>
