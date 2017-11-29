@@ -1,0 +1,18 @@
+{
+    "name": "ecomm.pro/custom-currency",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "ecomm.pro",
+            "email": "dev@ecomm.pro"
+        }
+    ],    
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EcommPro\\CustomCurrency\\": ""
+        }
+    }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ecommpro" translate="label" sortOrder="10000">
+            <label>EcommPro</label>
+        </tab>
+        <section id="customcurrency" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Custom Currency</label>
+            <tab>ecommpro</tab>
+            <resource>EcommPro_CustomCurrency::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">                
+                <field id="currencies" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Currencies</label>
+                    <comment>
+<![CDATA[
+Currencies list (code, singular and plural separated by a whiteline):<br />
+<pre><em>{code}</em>
+<em>{singular}</em>
+<em>{plural}</em></pre>
+Example:<br /><pre>BTC
+Bitcoin
+Bitcoins
+
+ETH
+Ethereum
+Ethers</pre>
+]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
