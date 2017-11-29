@@ -4,8 +4,7 @@ namespace EcommPro\CustomCurrency\Model;
 class Config
 {
     protected $_additionalCurrencies = [
-        [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],
-        [ 'code' => 'POINTS', 'singular' => 'Point', 'plural' => 'Points' ],
+        [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],        
         [ 'code' => 'BTC', 'singular' => 'Bitcoin', 'plural' => 'Bitcoins' ],
         [ 'code' => 'ETH', 'singular' => 'Ethereum', 'plural' => 'Ethereums' ],
         [ 'code' => 'BCH', 'singular' => 'Bitcoin Cash', 'plural' => 'Bitcoins Cash' ],

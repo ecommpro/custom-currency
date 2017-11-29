@@ -2,7 +2,7 @@
 
 - No critical rewrites.
 - Add as many currencies as you want.
-- Preloaded with the general purpose currencies *Point* and *Points* and some of top cryptocurencies: *Bitcoin (BTC)*, *Ethereum (ETH)*, *Bitcoin Cash (BCH)*, *Ripple (XRP)*, *Bitcoin Gold (BTG)*, *DASH*, *Litecoin (LTC)*, *IOTA*, *Ethereum Classic (ETC)*, *Monero (XMR)*, *Cardano (ADA)*, *NEO*, *NEM*, *Stellar Lumen (XLM)*, *Qtum (QTUM)*, *Zcash (ZEC)*.
+- Preloaded with the general purpose currency *Point* and some of top cryptocurencies: *Bitcoin (BTC)*, *Ethereum (ETH)*, *Bitcoin Cash (BCH)*, *Ripple (XRP)*, *Bitcoin Gold (BTG)*, *DASH*, *Litecoin (LTC)*, *IOTA*, *Ethereum Classic (ETC)*, *Monero (XMR)*, *Cardano (ADA)*, *NEO*, *NEM*, *Stellar Lumen (XLM)*, *Qtum (QTUM)*, *Zcash (ZEC)*.
 
 You can add your own currencies from the admin page or via dependency injection XML:
 
