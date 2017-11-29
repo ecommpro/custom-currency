@@ -65,17 +65,17 @@ This module is based in these observations:
 grep -hr CurrencyBundle vendor/*
 ```
 
-
-    use Magento\Framework\Locale\Bundle\CurrencyBundle;
-                $currencies = (new CurrencyBundle())->get($this->localeResolver->getLocale())['Currencies'];
-    use Magento\Framework\Locale\Bundle\CurrencyBundle as CurrencyBundle;
-                            $allCurrencies = (new CurrencyBundle())->get(
-    class CurrencyBundle extends DataBundle
-    use Magento\Framework\Locale\Bundle\CurrencyBundle;
-            $currencies = (new CurrencyBundle())->get($this->localeResolver->getLocale())['Currencies'] ?: [];
-            $currencyBundle = new \Magento\Framework\Locale\Bundle\CurrencyBundle();
-    use Magento\Framework\Locale\Bundle\CurrencyBundle;
-            $currencies = (new CurrencyBundle())->get(Resolver::DEFAULT_LOCALE)['Currencies'];
-
+```txt
+use Magento\Framework\Locale\Bundle\CurrencyBundle;
+            $currencies = (new CurrencyBundle())->get($this->localeResolver->getLocale())['Currencies'];
+use Magento\Framework\Locale\Bundle\CurrencyBundle as CurrencyBundle;
+                        $allCurrencies = (new CurrencyBundle())->get(
+class CurrencyBundle extends DataBundle
+use Magento\Framework\Locale\Bundle\CurrencyBundle;
+        $currencies = (new CurrencyBundle())->get($this->localeResolver->getLocale())['Currencies'] ?: [];
+        $currencyBundle = new \Magento\Framework\Locale\Bundle\CurrencyBundle();
+use Magento\Framework\Locale\Bundle\CurrencyBundle;
+        $currencies = (new CurrencyBundle())->get(Resolver::DEFAULT_LOCALE)['Currencies'];
+```
 
 So, the key idea is to load our own version of `Magento\Framework\Locale\Bundle\CurrencyBundle` (a really simple class), override the `get` method and return a modified array imitating the original `ResourceBundle`.
