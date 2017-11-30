@@ -6,7 +6,7 @@
 
 You can add your own currencies from the admin page or via dependency injection XML:
 
-## Admin Page
+### Admin Page
 
 Visit `Stores > Configuration > EcommPro > Custom Currency` and add the currencies you want in the text box, separated by blank lines, with the format:
 
@@ -28,7 +28,7 @@ DogeCoin
 DogeCoins
 ```
 
-## Dependency Injection XML
+### Dependency Injection XML
 
 If you want your currencies be available at install time, this should be the chosen method.
 
