@@ -1,7 +1,7 @@
 <?php
 namespace Magento\Framework\Locale\Bundle;
 
-
+if (!class_exists('\Magento\Framework\Locale\Bundle\CurrencyBundle')) :
 class CurrencyBundle extends DataBundle
 {
     protected $path = 'ICUDATA-curr';
@@ -38,3 +38,4 @@ class CurrencyBundle extends DataBundle
         return $bundleAsArray;
     }
 }
+endif;
