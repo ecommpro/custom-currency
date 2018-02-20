@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * acl
+ * @copyright Copyright © 2017 Ecomm.pro. All rights reserved.
+ * @author    dev@ecomm.pro
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="EcommPro_CustomCurrency::currency" title="Currency" sortOrder="10" />
+            </resource>
+        </resources>
+    </acl>
+</config>

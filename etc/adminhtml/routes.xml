@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * routes
+ * @copyright Copyright © 2017 Ecomm.pro. All rights reserved.
+ * @author    dev@ecomm.pro
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="ecommpro_customcurrency" frontName="ecommpro_customcurrency">
+            <module name="EcommPro_CustomCurrency" />
+        </route>
+    </router>
+</config>

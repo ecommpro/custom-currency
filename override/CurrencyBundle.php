@@ -1,6 +1,16 @@
 <?php
 namespace Magento\Framework\Locale\Bundle;
 
+$autoloadFunctions = spl_autoload_functions();
+foreach($autoloadFunctions as $f) {
+    spl_autoload_unregister($f);
+}
+$classExists = class_exists('Magento\Framework\Locale\Bundle\CurrencyBundle');
+foreach($autoloadFunctions as $f) {
+    spl_autoload_register($f);
+}
+
+if (!$classExists) :
 class CurrencyBundle extends DataBundle
 {
     protected $path = 'ICUDATA-curr';
@@ -37,3 +47,4 @@ class CurrencyBundle extends DataBundle
         return $bundleAsArray;
     }
 }
+endif;

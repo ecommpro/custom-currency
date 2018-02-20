@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * menu
+ * @copyright Copyright © 2017 Ecomm.pro. All rights reserved.
+ * @author    dev@ecomm.pro
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="EcommPro_CustomCurrency::currencies" title="Manage Currencies" module="EcommPro_CustomCurrency" sortOrder="50" parent="EcommPro_Core::all" action="ecommpro_customcurrency/currency" resource="EcommPro_CustomCurrency::currencies"/>
+    </menu>
+</config>

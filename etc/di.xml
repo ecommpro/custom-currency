@@ -1,7 +1,34 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- <preference for="Magento\Framework\CurrencyInterface" type="EcommPro\CustomCurrency\Currency" /> -->
+
+
     <type name="Magento\Framework\Locale\Config">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\LocaleConfigPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\App\Config">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\ConfigPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\CurrencyInterface">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkCurrencyInterfacePlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\Locale\FormatInterface">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkLocaleFormatConfigPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\Pricing\Render\AmountRenderInterface">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkPricingRenderAmountPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\Pricing\PriceCurrencyInterface">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkPricingPriceCurrencyPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Directory\Model\Currency">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\DirectoryCurrencyPlugin" sortOrder="1" />
     </type>
 
     <type name="EcommPro\CustomCurrency\Model\Config">
@@ -16,4 +43,41 @@
         </arguments>
     </type>
 
+    <!-- Temporal fix to 2.1 problem with eav attributes: https://github.com/magento/magento2/issues/5339 -->
+    <type name="Magento\Eav\Model\Entity\AttributeCache">
+        <arguments>
+            <argument name="unsupportedTypes" xsi:type="array">
+                <item name="ecommpro_currency" xsi:type="string">ecommpro_currency</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- end temporal fix -->
+    <type name="EcommPro\CustomCurrency\UI\Component\Listing\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">EcommPro\CustomCurrency\Model\ResourceModel\Currency\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RefGridFilterPool</argument>
+        </arguments>
+    </type>
+    <virtualType name="RefGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ecommpro_customcurrency_currency_listing_data_source" xsi:type="string">EcommPro\CustomCurrency\Model\ResourceModel\Currency\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="EcommPro\CustomCurrency\Model\ResourceModel\Currency\Grid\Collection">
+        <arguments>
+            <argument name="eventPrefix" xsi:type="string">ecommpro_customcurrency_currency_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">ecommpro_customcurrency_currency_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">EcommPro\CustomCurrency\Model\ResourceModel\Currency</argument>
+        </arguments>
+    </type>
 </config>
