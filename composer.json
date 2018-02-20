@@ -1,6 +1,7 @@
 {
-    "name": "ecomm.pro/custom-currency",
+    "name": "ecommpro/custom-currency",
     "type": "magento2-module",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "ecomm.pro",
