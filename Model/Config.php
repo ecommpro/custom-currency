@@ -73,6 +73,6 @@ class Config
 
     public function getPrecision()
     {
-        return 8;
+        return 2;
     }
 }
