@@ -35,6 +35,7 @@ class Config
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\App\State $appState,
         $currencies = []
     ) {
         $this->scopeConfig = $scopeConfig;
@@ -42,6 +43,7 @@ class Config
         $this->storeManager = $storeManager;
         $this->resourceConnection = $resourceConnection;
         $this->logger = $logger;
+        $this->appState = $appState;
         $this->currencies = $currencies;
     }
 
@@ -106,8 +108,49 @@ class Config
             } else {
                 $data['symbolimage_src'] = '';
             }
+
+            $currency = $data;
+
+            if (isset($currency['symbol_html']) && !empty($currency['symbol_html'])) {
+                $symbolHtml = str_replace([
+                    '{{symbol}}', '{{symbol_image}}', '{{image}}',
+                ], [
+                    $currency['symbol'], $currency['symbolimage_src'], $currency['symbolimage_src'],
+                ], $currency['symbol_html']);
+            } else {
+                $symbolHtml = '';
+            }
+
+            $currency['symbol_html_final'] = $symbolHtml;
+
+
+            if (isset($currency['format']) && !empty($currency['format'])) {
+                $format = str_replace([
+                    '{{symbol}}', '{{symbol_image}}', '{{image}}', '{{symbol_html}}',
+                ], [
+                    $currency['symbol'], $currency['symbolimage_src'], $currency['symbolimage_src'], $symbolHtml,
+                ], $currency['format']);
+
+                $currency['format_final'] = $format;
+            } else {
+                $currency['format_final'] = '';
+            }
+
+
+            if (isset($currency['format_html']) && !empty($currency['format_html'])) {
+                $formatHtml = str_replace([
+                    '{{symbol}}', '{{symbol_image}}', '{{image}}', '{{symbol_html}}',
+                ], [
+                    $currency['symbol'], $currency['symbolimage_src'], $currency['symbolimage_src'], $symbolHtml,
+                ], $currency['format_html']);
+
+                $currency['format_html_final'] = $formatHtml;
+            } else {
+                $currency['format_html_final'] = $currency['format_final'];
+            }
+
             
-            $currencies[$item->getCode()] = $data;
+            $currencies[$item->getCode()] = $currency;
         }
 
         return $this->cache[$key] = $currencies;
@@ -117,4 +160,27 @@ class Config
     {
         return 2;
     }
+
+    public function getPatternHtml()
+    {
+        $currency = $this->getCurrency();
+        return $currency['format_html_final'];
+    }
+
+    public function getPatternTxt()
+    {
+        $currency = $this->getCurrency();
+        return $currency['format_final'];
+    }
+
+    public function getPattern()
+    {
+        if ($this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND) {
+            return $this->getPatternHtml();
+        } else {
+            return $this->getPatternTxt();
+        }
+    }
+
+
 }

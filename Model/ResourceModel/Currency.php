@@ -113,28 +113,33 @@ class Currency extends AbstractEntity
             $data['entity_type_id'] = $object->getEntityTypeId();
         }
 
-        if ($attribute->isScopeStore()) {
-            /**
-             * Update attribute value for store
-             */
-            $this->_attributeValuesToSave[$table][] = $data;
-        } elseif ($attribute->isScopeWebsite() && $storeId != Store::DEFAULT_STORE_ID) {
-            /**
-             * Update attribute value for website
-             */
-            $storeIds = $this->_storeManager->getStore($storeId)->getWebsite()->getStoreIds(true);
-            foreach ($storeIds as $storeId) {
-                $data['store_id'] = (int)$storeId;
+        if ($attribute instanceof \EcommPro\CustomCurrency\Model\ResourceModel\Eav\Attribute) {
+            if ($attribute->isScopeStore()) {
+                /**
+                 * Update attribute value for store
+                 */
+                $this->_attributeValuesToSave[$table][] = $data;
+            } elseif ($attribute->isScopeWebsite() && $storeId != Store::DEFAULT_STORE_ID) {
+                /**
+                 * Update attribute value for website
+                 */
+                $storeIds = $this->_storeManager->getStore($storeId)->getWebsite()->getStoreIds(true);
+                foreach ($storeIds as $storeId) {
+                    $data['store_id'] = (int)$storeId;
+                    $this->_attributeValuesToSave[$table][] = $data;
+                }
+            } else {
+                /**
+                 * Update global attribute value
+                 */
+                $data['store_id'] = Store::DEFAULT_STORE_ID;
                 $this->_attributeValuesToSave[$table][] = $data;
             }
         } else {
-            /**
-             * Update global attribute value
-             */
             $data['store_id'] = Store::DEFAULT_STORE_ID;
             $this->_attributeValuesToSave[$table][] = $data;
         }
-
+        
         return $this;
     }
 }

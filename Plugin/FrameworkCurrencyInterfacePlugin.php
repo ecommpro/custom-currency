@@ -18,50 +18,31 @@ class FrameworkCurrencyInterfacePlugin
     }
 
     //public function toCurrency($value = null, array $options = array())
-    public function beforeToCurrency(\Magento\Framework\CurrencyInterface $subject, ...$args)
+    public function aroundToCurrency(\Magento\Framework\CurrencyInterface $subject, callable $proceed, ...$args)
     {
         $args = $args + [null, []];
         list($value, $options) = $args;
 
-        $areaCode = $this->appState->getAreaCode();
-        
+        $areaCode = $this->appState->getAreaCode();        
         $currency = $this->config->getCurrency();
 
         if (!$currency) {
-            return [$value, $options];
+            return $proceed(...$args);
         }
 
-        if (isset($currency['symbol_html']) && !empty($currency['symbol_html'])) {
-            $symbolHtml = str_replace([
-                '{{amount}}', '{{symbol}}', '{{symbol_image}}', '{{image}}',
-            ], [
-                '#,##0.00', '¤', $currency['symbolimage_src'], $currency['symbolimage_src'],
-            ], $currency['symbol_html']);
-        } else {
-            $symbolHtml = '';
-        }
-
-        if (isset($currency['format']) && !empty($currency['format'])) {
-            $options['format'] = str_replace([
-                '{{amount}}', '{{symbol}}', '{{symbol_image}}', '{{image}}', '{{symbol_html}}',
-            ], [
-                '#,##0.00', '¤', $currency['symbolimage_src'], $currency['symbolimage_src'], $symbolHtml,
-            ], $currency['format']);
-        }
-
-        // affect: admin dashboard, product list, product view NO AJAX
-        // warning: in admin there are places where html tags are rendered as text
-
-        if ($this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND && !empty($symbolHtml)) {
-            $options['symbol'] = $symbolHtml;
-        } else {
-            $options['symbol'] = $currency['symbol'];
-        }
+        $locale = $subject->getLocale();
+        $formatOptions = [
+            'locale' => $locale,
+            'number_format' => '#,##0.00',
+        ];
 
         if (isset($currency['precision'])) {
-            $options['precision'] = $currency['precision'];
+            $formatOptions['precision'] = $currency['precision'];             
         }
-        
-        return [$value, $options];
+
+        //$format = \Zend_Locale_Data::getContent($locale, 'currencynumber');        
+        $valueStr = \Zend_Locale_Format::toNumber($value, $formatOptions);
+        $pattern = $this->config->getPattern();
+        return str_replace('{{amount}}', $valueStr, $pattern);
     }
 }
