@@ -12,7 +12,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $this->priceDecimalFixer = $priceDecimalFixer;
     }
 
-    public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
-        $this->priceDecimalFixer->execute($setup, $context);
+    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context) {
+        // $this->priceDecimalFixer->execute($setup, $context);
     }
 }
