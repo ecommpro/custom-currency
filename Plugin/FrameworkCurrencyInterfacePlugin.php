@@ -23,13 +23,13 @@ class FrameworkCurrencyInterfacePlugin
         $args = $args + [null, []];
         list($value, $options) = $args;
 
-        $areaCode = $this->appState->getAreaCode();        
         $currency = $this->config->getCurrency();
 
-        if (!$currency) {
+        if (!$currency || isset($options['display']) && $options['display']) {
             return $proceed(...$args);
         }
 
+        $areaCode = $this->appState->getAreaCode();
         $locale = $subject->getLocale();
         $formatOptions = [
             'locale' => $locale,
@@ -37,12 +37,14 @@ class FrameworkCurrencyInterfacePlugin
         ];
 
         if (isset($currency['precision'])) {
-            $formatOptions['precision'] = $currency['precision'];             
+            $formatOptions['precision'] = $currency['precision'];
         }
 
-        //$format = \Zend_Locale_Data::getContent($locale, 'currencynumber');        
+        //$format = \Zend_Locale_Data::getContent($locale, 'currencynumber');
+        
         $valueStr = \Zend_Locale_Format::toNumber($value, $formatOptions);
         $pattern = $this->config->getPattern();
+
         return str_replace('{{amount}}', $valueStr, $pattern);
     }
 }

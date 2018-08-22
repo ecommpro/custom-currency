@@ -194,7 +194,7 @@
                     <item name="source" xsi:type="string">main_fieldset</item>
                     <item name="sortOrder" xsi:type="number">51</item>
                     <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
-                    <item name="default" xsi:type="string"><![CDATA[<span class="currency"><span class="currency-amount">{{amount}}</span> <span class="currency-symbol">{{symbol}}</span></span>]]></item>
+                    <item name="default" xsi:type="string"><![CDATA[<span class="currency"><span class="currency-amount">{{amount}}</span> <span class="currency-symbol">{{symbol_html}}</span></span>]]></item>
                 </item>
             </argument>
             <settings>

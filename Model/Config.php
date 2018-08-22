@@ -36,6 +36,7 @@ class Config
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\App\State $appState,
+        \Magento\Framework\View\Asset\Repository $assetRepo,
         $currencies = []
     ) {
         $this->scopeConfig = $scopeConfig;
@@ -44,6 +45,7 @@ class Config
         $this->resourceConnection = $resourceConnection;
         $this->logger = $logger;
         $this->appState = $appState;
+        $this->assetRepo = $assetRepo;
         $this->currencies = $currencies;
     }
 
@@ -85,6 +87,9 @@ class Config
     
     public function getCurrencies()
     {
+        //echo $this->assetRepo->getUrl("EcommPro_CustomCurrency::image/star.svg");
+        //exit;
+
         $storeId = $this->storeManager->getStore()->getStoreId();
         $key = 'currencies:' . $storeId;
 
@@ -111,6 +116,10 @@ class Config
 
             $currency = $data;
 
+            if (empty($currency['symbol'])) {
+                $currency['symbol'] = $currency['code'];
+            }
+
             if (isset($currency['symbol_html']) && !empty($currency['symbol_html'])) {
                 $symbolHtml = str_replace([
                     '{{symbol}}', '{{symbol_image}}', '{{image}}',
@@ -118,7 +127,7 @@ class Config
                     $currency['symbol'], $currency['symbolimage_src'], $currency['symbolimage_src'],
                 ], $currency['symbol_html']);
             } else {
-                $symbolHtml = '';
+                $symbolHtml = $currency['symbol'];
             }
 
             $currency['symbol_html_final'] = $symbolHtml;
@@ -149,11 +158,30 @@ class Config
                 $currency['format_html_final'] = $currency['format_final'];
             }
 
-            
+            $currency['symbol_html_final'] = $this->parse($currency['symbol_html_final']);
+            $currency['format_html_final'] = $this->parse($currency['format_html_final']);
+
             $currencies[$item->getCode()] = $currency;
         }
 
         return $this->cache[$key] = $currencies;
+    }
+
+    public function parse($string)
+    {
+        $parsed = $string;
+        $matches = [];
+        preg_match_all('/{{(.*?)}}/mi', $string, $matches);
+        foreach($matches[1] as $k => $match) {
+            if (strpos($match, '::') === false) {
+                continue;
+            }
+            $value = $this->assetRepo->getUrl($match);
+            if ($value) {
+                $parsed = str_replace($matches[0][$k], $value, $parsed);
+            }
+        }
+        return $parsed;
     }
 
     public function getPrecision()

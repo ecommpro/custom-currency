@@ -12,6 +12,8 @@ use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
+use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
+
 /**
  * @codeCoverageIgnore
  */
@@ -29,9 +31,15 @@ class InstallData implements InstallDataInterface
      *
      * @param CurrencySetupFactory $currencySetupFactory
      */
-    public function __construct(CurrencySetupFactory $currencySetupFactory)
-    {
+    public function __construct(
+        CurrencySetupFactory $currencySetupFactory,
+        \EcommPro\CustomCurrency\Model\CurrencyFactory $currencyFactory,
+        SampleDataContext $sampleDataContext
+    ) {
         $this->currencySetupFactory = $currencySetupFactory;
+        $this->currencyFactory = $currencyFactory;
+        $this->fixtureManager = $sampleDataContext->getFixtureManager();
+        $this->csvReader = $sampleDataContext->getCsvReader();
     }
 
     /**
@@ -49,6 +57,27 @@ class InstallData implements InstallDataInterface
         $entities = $currencySetup->getDefaultEntities();
         foreach ($entities as $entityName => $entity) {
             $currencySetup->addEntityType($entityName, $entity);
+        }
+
+
+        // Add sample currencies
+        $fileName = $this->fixtureManager->getFixture('EcommPro_CustomCurrency::fixtures/currencies.csv');
+
+        $rows = $this->csvReader->getData($fileName);
+        $header = array_shift($rows);
+
+        $currency = $this->currencyFactory->create();
+        foreach ($rows as $row) {
+            $data = [];
+            foreach ($row as $key => $value) {
+                $data[$header[$key]] = $value;
+            }
+            $row = $data;
+
+            $currency->unsetData();
+            $currency->setData($data);
+            $currency->setStoreId(\Magento\Store\Model\Store::DEFAULT_STORE_ID);
+            $currency->save();
         }
 
         $setup->endSetup();

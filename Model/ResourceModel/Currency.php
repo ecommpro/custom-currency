@@ -43,6 +43,9 @@ class Currency extends AbstractEntity
         parent::__construct($context, $data);
         $this->setType(CurrencySetup::ENTITY_TYPE_CODE);
         $this->setConnection(CurrencySetup::ENTITY_TYPE_CODE . '_read', CurrencySetup::ENTITY_TYPE_CODE . '_write');
+
+        
+
         $this->_storeManager = $storeManager;
     }
 

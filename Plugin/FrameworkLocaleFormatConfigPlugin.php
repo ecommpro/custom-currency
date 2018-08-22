@@ -23,10 +23,9 @@ class FrameworkLocaleFormatConfigPlugin
         }
 
         $pattern = $this->config->getPattern();
-
         //$result['pattern'] = preg_replace('/%s(?![ $])/', '%s ', $result['pattern']);
         $result['pattern'] = str_replace('{{amount}}', '%s', $pattern);
-        
+
         $currency = $this->config->getCurrency();
         if (isset($currency['precision'])) {
             $result['precision'] = $currency['precision'];

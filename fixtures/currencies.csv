@@ -1,0 +1,5 @@
+"code","status","precision","name","plural","format","format_html","symbol","symbol_html","symbolimage"
+"POINT",1,0,"Point","Points","{{amount}} {{symbol}}","<span class=""currency""><span class=""currency-amount"">{{amount}}</span> <span class=""currency-symbol"">{{symbol_html}}</span></span>","Points",,
+"STAR",1,0,"Star","Stars","{{amount}} {{symbol}}","<span class=""currency""><span class=""currency-amount"">{{amount}}</span> <span class=""currency-symbol"">{{symbol_html}}</span></span>","STAR","<img src=""{{EcommPro_CustomCurrency::image/star.svg}}"" />",
+"BTC",1,6,"Bitcoin","Bitcoins","{{symbol}} {{amount}}","<span class=""currency""><span class=""currency-symbol"">{{symbol_html}}</span> <span class=""currency-amount"">{{amount}}</span></span>","BTC","<i class=""cf cf-btc""></i>",
+"TRX",1,4,"Tron","Trons","{{amount}} {{symbol}}","<span class=""currency""><span class=""currency-amount"">{{amount}}</span> <span class=""currency-symbol"">{{symbol_html}}</span></span>","TRX","<img src=""{{EcommPro_CustomCurrency::image/tron.svg}}"" />",

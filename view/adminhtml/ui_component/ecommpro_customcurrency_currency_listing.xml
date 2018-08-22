@@ -126,6 +126,7 @@
                     </item>
                 </argument>
             </action>
+            <!--
             <action name="edit">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
@@ -138,6 +139,7 @@
                     </item>
                 </argument>
             </action>
+            -->
         </massaction>
         <paging name="listing_paging">
             <argument name="data" xsi:type="array">
@@ -193,7 +195,7 @@
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="entity_id">
+        <column name="entity_id" sortOrder="10">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -202,7 +204,7 @@
                 </item>
             </argument>
         </column>
-        <column name="code">
+        <column name="code" sortOrder="20">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
@@ -216,7 +218,20 @@
                 </item>
             </argument>
         </column>
-        <column name="precision">
+
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <options class="Magento\Cms\Model\Page\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+        <column name="precision" sortOrder="40">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
@@ -227,7 +242,7 @@
                 </item>
             </argument>
         </column>
-        <column name="name">
+        <column name="name" sortOrder="50">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
@@ -238,7 +253,7 @@
                 </item>
             </argument>
         </column>
-        <column name="plural">
+        <column name="plural" sortOrder="60">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
@@ -249,6 +264,8 @@
                 </item>
             </argument>
         </column>
+        
+        <!--
         <column name="format">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -258,8 +275,8 @@
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Format</item>
                 </item>
-            </argument>
         </column>
+            </argument>
 
         <column name="symbolimage" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="20">
             <settings>
@@ -269,6 +286,7 @@
                 <sortable>false</sortable>
             </settings>
         </column>
+        -->
 
         <!-- Add your columns here -->
         <actionsColumn name="actions" class="EcommPro\CustomCurrency\Ui\Component\Listing\Column\CurrencyActions">

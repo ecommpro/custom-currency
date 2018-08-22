@@ -1,13 +1,7 @@
 <?xml version="1.0"?>
-<!--
-/**
- * @author EcommPro
- * @copyright Copyright (c) EcommPro (http://ecomm.pro)
- * @package EcommPro_CookieMsg
- */
--->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="EcommPro_CustomCurrency::css/custom-currency.css"/>
+        <css src="EcommPro_CustomCurrency::css/cryptofont.min.css"/>
     </head>
 </page>
