@@ -14,8 +14,8 @@ class LocaleConfigPlugin
 
     public function afterGetAllowedCurrencies(\Magento\Framework\Locale\Config $subject, $result)
     {
-        $currencies = $this->config->getCurrencies();
+        $currencies = $this->config->getAllowedCurrencies();
         $result = array_merge($result, array_keys($currencies));
-        return $result;
+        return $result;     
     }
 }

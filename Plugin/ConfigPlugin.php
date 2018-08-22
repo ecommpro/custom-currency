@@ -18,9 +18,7 @@ class ConfigPlugin
     )
     {
         if ($path === 'system/currency/installed') {
-            return $result . ',' . implode(',', array_values(array_map(function($el) {
-                return $el['code'];
-            }, $this->config->getCurrencies())));
+            return $result . ',' . implode(',', $this->config->getAllowedCurrencies());
         }
         return $result;
     }

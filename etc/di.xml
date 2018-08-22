@@ -80,4 +80,11 @@
             <argument name="resourceModel" xsi:type="string">EcommPro\CustomCurrency\Model\ResourceModel\Currency</argument>
         </arguments>
     </type>
+
+    <type name="EcommPro\CustomCurrency\Model\ResourceModel\Currency\Collection">
+        <arguments>
+            <argument name="dummyLogger" xsi:type="object">EcommPro\CustomCurrency\Model\DummyLogger</argument>
+        </arguments>
+    </type>
+
 </config>

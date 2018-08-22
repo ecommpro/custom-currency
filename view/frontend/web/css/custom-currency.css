@@ -1,0 +1,6 @@
+.currency-symbol svg,
+.currency-symbol img,
+.custom-currency
+ {
+    height: 1em;
+}

@@ -42,6 +42,17 @@ class CurrencySetup extends EavSetup
             'validate_rules' => 'a:2:{s:15:"max_text_length";i:100;s:15:"min_text_length";i:1;}'
         ];
 
+        $attributes['status'] = [
+            'type' => 'int',
+            'label' => 'Status',
+            'input' => 'smallint',
+            'required' => true,
+            'sort_order' => 10,
+            'global' => ScopedAttributeInterface::SCOPE_WEBSITE,
+            'group' => 'General',
+            'default' => 1,
+        ];
+
         $attributes['precision'] = [
             'type' => 'static',
             'label' => 'Code',
@@ -82,6 +93,36 @@ class CurrencySetup extends EavSetup
             'group' => 'General',
         ];
 
+        $attributes['format_html'] = [
+            'type' => 'varchar',
+            'label' => 'Format (HTML)',
+            'input' => 'text',
+            'required' => false,
+            'sort_order' => 11,
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'group' => 'General',
+        ];
+
+        $attributes['symbol'] = [
+            'type' => 'varchar',
+            'label' => 'Format',
+            'input' => 'text',
+            'required' => false,
+            'sort_order' => 12,
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'group' => 'General',
+        ];
+
+        $attributes['symbol_html'] = [
+            'type' => 'varchar',
+            'label' => 'Format',
+            'input' => 'text',
+            'required' => false,
+            'sort_order' => 14,
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'group' => 'General',
+        ];
+
         $attributes['symbolimage'] = [
             'type' => 'varchar',
             'label' => 'Symbol Image',
@@ -92,17 +133,6 @@ class CurrencySetup extends EavSetup
             'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
             'group' => 'General',
         ];
-
-        // Add your entity attributes here... For example:
-//        $attributes['is_active'] = [
-//            'type' => 'int',
-//            'label' => 'Is Active',
-//            'input' => 'select',
-//            'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-//            'sort_order' => 10,
-//            'global' => ScopedAttributeInterface::SCOPE_STORE,
-//            'group' => 'General',
-//        ];
 
         return $attributes;
     }

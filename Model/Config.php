@@ -27,48 +27,85 @@ class Config
         [ 'code' => 'XLC', 'singular' => 'Leviar', 'plural' => 'Leviars' ],
     ];
 
+    protected $cache = [];
+
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \EcommPro\CustomCurrency\Model\ResourceModel\Currency\CollectionFactory $collectionFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
         \Psr\Log\LoggerInterface $logger,
         $currencies = []
-    )
-    {
+    ) {
         $this->scopeConfig = $scopeConfig;
+        $this->collectionFactory = $collectionFactory;
+        $this->storeManager = $storeManager;
+        $this->resourceConnection = $resourceConnection;
         $this->logger = $logger;
         $this->currencies = $currencies;
+    }
+
+    public function getAllowedCurrencies()
+    {
+        if (isset($this->cache['allowed'])) {
+            return $this->cache['allowed'];
+        }
+
+        $connection = $this->resourceConnection->getConnection();
+        $tableName = $this->resourceConnection->getTableName('ecommpro_currency_entity');
+        return $this->cache['allowed'] = $connection->fetchCol("SELECT code FROM $tableName");
+    }
+
+    public function getCurrency($code = null)
+    {
+        $storeId = $this->storeManager->getStore()->getStoreId();
+        if ($code === null) {
+            $code = $this->storeManager->getStore()->getCurrentCurrency()->getCode();
+        }
+        $key = "currency:$code:$storeId";
+
+        if (isset($this->cache[$key])) {
+            return $this->cache[$key];
+        }
+
+        $currencies = $this->getCurrencies();
+        if (isset($currencies[$code])) {
+            return $this->cache[$key] = $currencies[$code];
+        }
+
+        return $this->cache[$key] = false;
     }
     
     public function getCurrencies()
     {
-      	$result = $this->_additionalCurrencies;
+        $storeId = $this->storeManager->getStore()->getStoreId();
+        $key = 'currencies:' . $storeId;
 
-      	$string = "";
-      	try {
-	        $string = $this->scopeConfig->getValue('customcurrency/general/currencies');
-      	} catch(\Zend_Db_Statement_Exception $e) {
-	        //$this->logger->critical($e);
-      	}
+        if (isset($this->cache[$key])) {
+            return $this->cache[$key];
+        }
 
-		$string = preg_replace('~(*BSR_ANYCRLF)\R~', "\n", $string);
-		$string = trim($string, "\n");
-		$string = preg_replace('#^\h*#mi', "", $string);
-		$string = preg_replace('#\h*$#mi', "", $string);
+        $collection = $this->collectionFactory->create();
+        $collection->setStoreId($storeId);
+        $collection->addAttributeToFilter('status', 1);
+        $collection->addAttributeToSelect('*');
+        $collection->load();
 
-      	$groups = preg_split("/\h*[\n]{2,}$/mi", $string);
+        $currencies = [];
+        
+        foreach($collection as $item) {
+            $data = $item->getData();
+            $data['singular'] = $data['name'];
+            if (!empty($data['symbolimage'])) {
+                $data['symbolimage_src'] = $item->getSymbolimageSrc();
+            } else {
+                $data['symbolimage_src'] = '';
+            }
+            
+            $currencies[$item->getCode()] = $data;
+        }
 
-		foreach($groups as $group) {        
-			$lines = preg_split("/\n/mi", trim($group, "\n"));
-			$code = array_shift($lines);        
-			$singular = count($lines) ? array_shift($lines) : $code;
-			$plural = count($lines) ? array_shift($lines) : $code;
-
-			$result[$code] = [
-				"code" => $code,
-				"singular" => $singular,
-				"plural" => $plural
-			];
-		}
-		return array_merge($this->currencies, $result);
+        return $this->cache[$key] = $currencies;
     }
 
     public function getPrecision()

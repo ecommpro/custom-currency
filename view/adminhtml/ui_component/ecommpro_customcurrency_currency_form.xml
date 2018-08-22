@@ -86,7 +86,38 @@
                     <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
                 </item>
             </argument>
+            
+            <settings>
+                <notice translate="true">Usually an uppercase identifier like USD, EUR or BTC.</notice>
+            </settings>
         </field>
+
+
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">main_fieldset</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enabled</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
         <field name="precision">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -97,9 +128,11 @@
                     <item name="source" xsi:type="string">main_fieldset</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                     <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
+                    <item name="default" xsi:type="number">2</item>
                 </item>
             </argument>
         </field>
+
         <field name="name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -112,7 +145,11 @@
                     <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
                 </item>
             </argument>
+            <settings>
+                <notice translate="true">Name of the singular currency unit, like Dollar, Euro, Bitcoin.</notice>
+            </settings>
         </field>
+
         <field name="plural">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -125,7 +162,11 @@
                     <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
                 </item>
             </argument>
+            <settings>
+                <notice translate="true">Name of the plural currency unit, like Dollars, Euros, Bitcoins.</notice>
+            </settings>
         </field>
+
         <field name="format">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -136,8 +177,61 @@
                     <item name="source" xsi:type="string">main_fieldset</item>
                     <item name="sortOrder" xsi:type="number">50</item>
                     <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
+                    <item name="default" xsi:type="string">{{amount}} {{symbol}}</item>
                 </item>
             </argument>
+            <settings>
+                <notice translate="true">Symbol and amount placement. {{amount}} and {{symbol}} placeholders will be replaced by current amount and currency symbol.</notice>
+            </settings>
+        </field>
+        <field name="format_html">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Format (HTML)</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">main_fieldset</item>
+                    <item name="sortOrder" xsi:type="number">51</item>
+                    <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
+                    <item name="default" xsi:type="string"><![CDATA[<span class="currency"><span class="currency-amount">{{amount}}</span> <span class="currency-symbol">{{symbol}}</span></span>]]></item>
+                </item>
+            </argument>
+            <settings>
+                <notice translate="true">You can use HTML for render the currency string in frontend.</notice>
+            </settings>
+        </field>
+        <field name="symbol">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Symbol</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">main_fieldset</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
+                </item>
+            </argument>
+            <settings>
+                <notice translate="true">Plain text format of the currency symbol: $, €, 👏.</notice>
+            </settings>
+        </field>
+        <field name="symbol_html">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Symbol (HTML)</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">main_fieldset</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
+                </item>
+            </argument>
+            <settings>
+                <notice translate="true">You can use some webfont for render the currency symbol.</notice>
+            </settings>
         </field>
         <field name="symbolimage">
             <argument name="data" xsi:type="array">
@@ -153,7 +247,10 @@
                     <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
                 </item>
             </argument>
+            <settings>
+                <notice translate="true">You can use a custom image for render the currency symbol. Advice: use SVG images for best results.</notice>
+            </settings>
         </field>
-        <!-- Add your fields here -->
+        
     </fieldset>
 </form>
