@@ -53,6 +53,11 @@ class Config
 
         $connection = $this->resourceConnection->getConnection();
         $tableName = $this->resourceConnection->getTableName('ecommpro_currency_entity');
+
+        if (!$connection->isTableExists($tableName)) {
+            return [];
+        }
+
         return $this->cache['allowed'] = $connection->fetchCol("SELECT code FROM $tableName");
     }
 
