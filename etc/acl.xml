@@ -10,7 +10,11 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="EcommPro_CustomCurrency::currency" title="Currency" sortOrder="10" />
+
+					<resource id="EcommPro_CustomCurrency::main" title="Custom Currency" sortOrder="90">
+						<resource id="EcommPro_CustomCurrency::currencies" title="Manage Custom Currencies" sortOrder="10"/>
+					</resource>
+
             </resource>
         </resources>
     </acl>

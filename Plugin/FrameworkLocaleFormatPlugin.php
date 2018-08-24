@@ -1,7 +1,7 @@
 <?php
 namespace EcommPro\CustomCurrency\Plugin;
 
-class FrameworkLocaleFormatConfigPlugin
+class FrameworkLocaleFormatPlugin
 {
     protected $config;
 

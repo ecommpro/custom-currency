@@ -2,6 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- <preference for="Magento\Framework\CurrencyInterface" type="EcommPro\CustomCurrency\Currency" /> -->
 
+    <type name="Magento\Backend\Model\Menu\Builder">
+        <plugin name="EcommPro_CustomCurrency::core" type="EcommPro\CustomCurrency\Plugin\CorePlugin" sortOrder="999" />
+    </type>
 
     <type name="Magento\Framework\Locale\Config">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\LocaleConfigPlugin" sortOrder="1" />
@@ -16,7 +19,7 @@
     </type>
 
     <type name="Magento\Framework\Locale\FormatInterface">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkLocaleFormatConfigPlugin" sortOrder="1" />
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkLocaleFormatPlugin" sortOrder="1" />
     </type>
 
     <type name="Magento\Framework\Pricing\Render\AmountRenderInterface">
@@ -30,6 +33,22 @@
     <type name="Magento\Directory\Model\Currency">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\DirectoryCurrencyPlugin" sortOrder="1" />
     </type>
+
+
+
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CatalogProductViewPlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\ConfigurableProductProductViewTypeConfigurablePlugin" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Swatches\Block\Product\Renderer\Listing\Configurable">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\SwatchesProductRendererListingConfigurable" sortOrder="1" />
+    </type>
+
+
 
     <type name="EcommPro\CustomCurrency\Model\Config">
         <arguments>

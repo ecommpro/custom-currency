@@ -29,7 +29,6 @@ class FrameworkCurrencyInterfacePlugin
             return $proceed(...$args);
         }
 
-        $areaCode = $this->appState->getAreaCode();
         $locale = $subject->getLocale();
         $formatOptions = [
             'locale' => $locale,

@@ -203,7 +203,7 @@ class Config
 
     public function getPattern()
     {
-        if ($this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND) {
+        if (0 && $this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND) {
             return $this->getPatternHtml();
         } else {
             return $this->getPatternTxt();

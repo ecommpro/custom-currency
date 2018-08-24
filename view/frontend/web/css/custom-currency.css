@@ -4,3 +4,8 @@
  {
     height: 1em;
 }
+
+
+.price-box .price-container > span {
+    white-space: nowrap;
+}
