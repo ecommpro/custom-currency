@@ -1,7 +1,7 @@
 <?php
 namespace EcommPro\CustomCurrency\Plugin;
 
-class SwatchesProductRendererListingConfigurable
+class SwatchesProductRendererListingConfigurablePlugin
 { 
 
     public function __construct(

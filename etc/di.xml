@@ -45,10 +45,12 @@
     </type>
 
     <type name="Magento\Swatches\Block\Product\Renderer\Listing\Configurable">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\SwatchesProductRendererListingConfigurable" sortOrder="1" />
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\SwatchesProductRendererListingConfigurablePlugin" sortOrder="1" />
     </type>
 
-
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutCustomerDataCartPlugin"/>
+    </type>
 
     <type name="EcommPro\CustomCurrency\Model\Config">
         <arguments>
