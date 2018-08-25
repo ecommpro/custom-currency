@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- <preference for="Magento\Framework\CurrencyInterface" type="EcommPro\CustomCurrency\Currency" /> -->
-
-    <type name="Magento\Backend\Model\Menu\Builder">
-        <plugin name="EcommPro_CustomCurrency::core" type="EcommPro\CustomCurrency\Plugin\CorePlugin" sortOrder="999" />
-    </type>
-
+    
     <type name="Magento\Framework\Locale\Config">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\LocaleConfigPlugin" sortOrder="1" />
     </type>
@@ -26,14 +21,6 @@
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkPricingRenderAmountPlugin" sortOrder="1" />
     </type>
 
-    <type name="Magento\Framework\Pricing\PriceCurrencyInterface">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkPricingPriceCurrencyPlugin" sortOrder="1" />
-    </type>
-
-    <type name="Magento\Directory\Model\Currency">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\DirectoryCurrencyPlugin" sortOrder="1" />
-    </type>
-
 
 
     <type name="Magento\Catalog\Block\Product\View">
@@ -49,20 +36,17 @@
     </type>
 
     <type name="Magento\Checkout\CustomerData\Cart">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutCustomerDataCartPlugin"/>
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutCustomerDataCartPlugin" sortOrder="999"/>
     </type>
 
-    <type name="EcommPro\CustomCurrency\Model\Config">
-        <arguments>
-            <argument name="currencies" xsi:type="array">
-                <item name="XMPL" xsi:type="array">
-                    <item name="code" xsi:type="string">XMPL</item>
-                    <item name="singular" xsi:type="string">Examplium</item>
-                    <item name="plural" xsi:type="string">Exampliums</item>
-                </item>
-            </argument>
-        </arguments>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutDefaultConfigProviderPlugin" sortOrder="999"/>
     </type>
+
+    <type name="Magento\Checkout\Block\Cart\Grid">
+        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutBlockCartGridPlugin" sortOrder="999"/>
+    </type>
+
 
     <!-- Temporal fix to 2.1 problem with eav attributes: https://github.com/magento/magento2/issues/5339 -->
     <type name="Magento\Eav\Model\Entity\AttributeCache">
@@ -101,11 +85,4 @@
             <argument name="resourceModel" xsi:type="string">EcommPro\CustomCurrency\Model\ResourceModel\Currency</argument>
         </arguments>
     </type>
-
-    <type name="EcommPro\CustomCurrency\Model\ResourceModel\Currency\Collection">
-        <arguments>
-            <argument name="dummyLogger" xsi:type="object">EcommPro\CustomCurrency\Model\DummyLogger</argument>
-        </arguments>
-    </type>
-
 </config>

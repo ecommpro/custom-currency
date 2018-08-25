@@ -3,6 +3,8 @@ namespace EcommPro\CustomCurrency\Model;
 
 class Config
 {
+    static $enabledHtml = false;
+
     protected $_additionalCurrencies = [
         [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],        
         [ 'code' => 'BTC', 'singular' => 'Bitcoin', 'plural' => 'Bitcoins' ],
@@ -47,6 +49,16 @@ class Config
         $this->appState = $appState;
         $this->assetRepo = $assetRepo;
         $this->currencies = $currencies;
+    }
+
+    public static function enableHtml()
+    {
+        self::$enabledHtml = true;
+    }
+
+    public static function disableHtml()
+    {
+        self::$enabledHtml = false;
     }
 
     public function getAllowedCurrencies()
@@ -184,11 +196,6 @@ class Config
         return $parsed;
     }
 
-    public function getPrecision()
-    {
-        return 2;
-    }
-
     public function getPatternHtml()
     {
         $currency = $this->getCurrency();
@@ -203,7 +210,7 @@ class Config
 
     public function getPattern()
     {
-        if (0 && $this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND) {
+        if (self::$enabledHtml && $this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_FRONTEND) {
             return $this->getPatternHtml();
         } else {
             return $this->getPatternTxt();
