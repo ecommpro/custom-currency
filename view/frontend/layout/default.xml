@@ -4,4 +4,10 @@
         <css src="EcommPro_CustomCurrency::css/custom-currency.css"/>
         <css src="EcommPro_CustomCurrency::css/cryptofont.min.css"/>
     </head>
+
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Template" name="custom-currency-bootstrap" template="EcommPro_CustomCurrency::bootstrap.phtml"/>
+        </referenceContainer>
+    </body>
 </page>
