@@ -47,7 +47,7 @@
         <plugin name="html-currency-in-cart" type="EcommPro\CustomCurrency\Plugin\CheckoutBlockCartGridPlugin" sortOrder="999"/>
     </type>
 
-
+    
 
     <!-- Temporal fix to 2.1 problem with eav attributes: https://github.com/magento/magento2/issues/5339 -->
     <type name="Magento\Eav\Model\Entity\AttributeCache">

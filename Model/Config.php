@@ -179,6 +179,26 @@ class Config
         return $this->cache[$key] = $currencies;
     }
 
+    public function getEnabledHTMLBlocks()
+    {
+        $key = 'htmlblocks';
+
+        if (isset($this->cache[$key])) {
+            return $this->cache[$key];
+        }
+
+        $htmlblocks = $this->scopeConfig->getValue(
+            'customcurrency/general/htmlblocks',
+            \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE
+        );
+
+        $blocks = array_map(function($item) {
+            return trim($item);
+        }, preg_split("/[\n\r ]+/", trim($htmlblocks)));
+
+        return $blocks;
+    }
+
     public function parse($string)
     {
         $parsed = $string;
