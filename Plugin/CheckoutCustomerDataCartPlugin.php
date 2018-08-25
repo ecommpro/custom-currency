@@ -15,7 +15,9 @@ class CheckoutCustomerDataCartPlugin extends \Magento\Tax\Plugin\Checkout\Custom
                 if ($item = $this->findItemById($itemAsArray['item_id'], $items)) {
                     $this->itemPriceRenderer->setItem($item);
                     $this->itemPriceRenderer->setTemplate('checkout/cart/item/price/sidebar.phtml');
+                    \EcommPro\CustomCurrency\Model\Config::enableHtml();
                     $result['items'][$key]['product_price']=$this->itemPriceRenderer->toHtml();
+                    \EcommPro\CustomCurrency\Model\Config::disableHtml();
                 }
             }
         }
