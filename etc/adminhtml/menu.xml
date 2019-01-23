@@ -8,7 +8,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="EcommPro_CustomCurrency::main" title="Custom Currecy" module="EcommPro_CustomCurrency" sortOrder="50" parent="EcommPro_Core::all" resource="EcommPro_CustomCurrency::main"/>
-        <add id="EcommPro_CustomCurrency::currencies" title="Manage Currencies" module="EcommPro_CustomCurrency" sortOrder="90" parent="EcommPro_CustomCurrency::main" action="ecommpro_customcurrency/currency" resource="EcommPro_CustomCurrency::currencies"/>
+        <add id="EcommPro_CustomCurrency::currencies" title="EcommPro Custom Currency" module="EcommPro_CustomCurrency" sortOrder="90" parent="Magento_CurrencySymbol::system_currency" action="ecommpro_customcurrency/currency" resource="EcommPro_CustomCurrency::currencies"/>
     </menu>
 </config>
