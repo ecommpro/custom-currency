@@ -79,3 +79,79 @@ use Magento\Framework\Locale\Bundle\CurrencyBundle;
 ```
 
 So, the key idea is to load our own version of `Magento\Framework\Locale\Bundle\CurrencyBundle` (a really simple class), override the `get` method and return a modified array imitating the original `ResourceBundle`.
+
+
+## User Guide
+
+### Description
+
+EcommPro Custom Currency allows you to create and edit new currencies directly from the Magento administrator. Manage the options of these currencies such as the precision of decimals, the symbol as image, emoji or text, position, etc. Advisable for cryptocurrency.
+
+Regarding **currencies**, **Magento 2** has a lack.
+
+The currency system is heavily dependent on the PHP intl [ICU](http://site.icu-project.org/) extension.
+
+This is not bad. The intl extension is battle tested and powerful.
+
+But it covers only official fiat currencies.
+
+What about using custom currencies like *points*? Or what about the increasingly popular **crypto currencies** like Bitcoin (BTC), Tron (TRX), Ripple (XRP), among others?
+
+At the moment there’s no a solution provided from the **Magento 2** core.
+
+We’ve created a module to manage **custom currencies**, preloaded with some useful data like *points* currency and some of the most popular cryptos.
+
+We’ve decided to publish it in GitHub as open source.
+
+<a class="uri" href="https://github.com/ecommpro/custom-currency">https://github.com/ecommpro/custom-currency</a>
+
+We hope it is useful for you.
+
+### What can I do with EcommPro Custom Currency?
+
+- Create as many coins as you need.
+- Enables, disables or eliminates coins.
+- Give them a code, a name in the singular and in the plural.
+- Specifies the precision in decimals, ideal for cryptocurrency.
+- Specify the position (before or after the price).
+- Manage the symbol as text, emoji or image.
+
+### Installation
+
+The .zip file contains two folders. Documentation where this user guide and Plugin is located. Copy the contents of the Plugin folder in the root of your Magento 2.
+
+Execute the following commands
+    
+    # (in case you have EcommPro_Core installed, run only php bin/magento module:enable EcommPro_CustomCurrency)
+    php bin/magento module:enable EcommPro_Core EcommPro_CustomCurrency
+
+    php bin/magento setup:upgrade
+
+Access the Magento 2 administration panel and configure the module.
+
+### Module Guide
+
+You can access the module options easily from the side menu, EcommPro option.
+
+![Image 1](https://ecomm.pro/wp-content/uploads/2019/01/01.png)
+
+You can manage and consult new currencies easily from a Magento Grid.
+
+![Image 2](https://ecomm.pro/wp-content/uploads/2019/01/02.png)
+
+Customize your new coins with the variety of possible options such as number of decimals, position, name or symbol.
+
+![Image 3](https://ecomm.pro/wp-content/uploads/2019/01/03.png)
+
+From the Magento coin configuration section, select your new coins.
+
+![Image 4](https://ecomm.pro/wp-content/uploads/2019/01/04.png)
+
+Go to a listing or product listing and you will see your new currency in action.
+
+![Image 5](https://ecomm.pro/wp-content/uploads/2019/01/05.png)
+
+### Help and information
+
+If you need help or a specialized service you can receive support by writing an email from the following form:
+https://ecomm.pro/contact/
