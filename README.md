@@ -152,4 +152,4 @@ Go to a listing or product listing and you will see your new currency in action.
 ### Help and information
 
 If you need help or a specialized service you can receive support by writing an email from the following form:
-https://ecomm.pro/contact/
+https://ecomm.pro/en/contact-us/
