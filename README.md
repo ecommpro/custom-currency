@@ -133,7 +133,7 @@ Access the Magento 2 administration panel and configure the module.
 
 You can access the module options easily from the side menu, `Stores > Currency > EcommPro Custom Currency`.
 
-You can manage and consult new currencies easily from a Magento Grid.
+You can list and manage new currencies easily from a Magento Grid.
 
 ![Image 2](https://ecomm.pro/wp-content/uploads/2019/01/02.png)
 
