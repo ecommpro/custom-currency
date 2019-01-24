@@ -118,13 +118,11 @@ We hope it is useful for you.
 
 ### Installation
 
-The .zip file contains two folders. Documentation where this user guide and Plugin is located. Copy the contents of the Plugin folder in the root of your Magento 2.
+    composer require ecommpro/module-custom-currency
 
 Execute the following commands
-    
-    # (in case you have EcommPro_Core installed, run only php bin/magento module:enable EcommPro_CustomCurrency)
-    php bin/magento module:enable EcommPro_Core EcommPro_CustomCurrency
-
+  
+    php bin/magento module:enable EcommPro_CustomCurrency
     php bin/magento setup:upgrade
 
 Access the Magento 2 administration panel and configure the module.
