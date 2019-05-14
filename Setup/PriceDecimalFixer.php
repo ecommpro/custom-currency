@@ -7,7 +7,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 
 class PriceDecimalFixer
 {
-    public function execute( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
+    public function execute(SchemaSetupInterface $setup) {
         $installer = $setup;
 
         $installer->startSetup();
@@ -61,11 +61,15 @@ class PriceDecimalFixer
                 $columnData = $connection->getColumnCreateByDescribe($column);
                 $columnData['length'] = $precision . ',8';
 
-                $connection->modifyColumn(
-                    $installer->getTable($table),
-                    $columnName,
-                    $columnData
-                );
+                try {
+                    $connection->modifyColumn(
+                        $installer->getTable($table),
+                        $columnName,
+                        $columnData
+                    );
+                } catch(\PDOException $e) {
+                    echo "[EE] $table::$columnName\n";
+                }
             }
         }
 
