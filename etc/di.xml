@@ -29,6 +29,10 @@
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\FrameworkPricingRenderAmountPlugin" sortOrder="1" />
     </type>
 
+    <type name="Magento\Framework\Pricing\PriceCurrencyInterface">
+        <plugin name="EcommPro_CustomCurrency_PriceCurrencyInterface" type="EcommPro\CustomCurrency\Plugin\PriceCurrencyInterfacePlugin" sortOrder="1" />
+    </type>
+
 
 
     <type name="Magento\Catalog\Block\Product\View">
