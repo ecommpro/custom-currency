@@ -119,6 +119,12 @@ class Config
         
         foreach($collection as $item) {
             $data = $item->getData();
+
+            if (!isset($data['name'])) {
+                $data['name'] = $data['code'];
+            }
+
+            
             $data['singular'] = $data['name'];
             if (!empty($data['symbolimage'])) {
                 $data['symbolimage_src'] = $item->getSymbolimageSrc();
