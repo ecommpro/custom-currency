@@ -2,7 +2,9 @@
 
 - No critical rewrites.
 - Add as many currencies as you want.
-- Preloaded with the general purpose currency *Point* and some of top cryptocurencies: *Bitcoin (BTC)*, *Ethereum (ETH)*, *Bitcoin Cash (BCH)*, *Ripple (XRP)*, *Bitcoin Gold (BTG)*, *DASH*, *Litecoin (LTC)*, *IOTA*, *Ethereum Classic (ETC)*, *Monero (XMR)*, *Cardano (ADA)*, *NEO*, *NEM*, *Stellar Lumen (XLM)*, *Qtum (QTUM)*, *Zcash (ZEC)*.
+- Customize default currencies like USD or EUR.
+- Customize precision (decimal places).
+- Preloaded with the general purpose currency *Point* and some of top cryptocurencies like *Bitcoin (BTC)* or *Ethereum (ETH)*.
 
 ## Installation
 
@@ -46,9 +48,9 @@ We hope it is useful for you.
 - Create as many coins as you need.
 - Enables, disables or eliminates coins.
 - Give them a code, a name in the singular and in the plural.
-- Specifies the precision in decimals, ideal for cryptocurrency.
-- Specify the position (before or after the price).
-- Manage the symbol as text, emoji or image.
+- Set the precision in decimals, ideal for cryptocurrency.
+- Set the symbol position (before or after the price).
+- Manage the currency symbol as text, emoji or image.
 
 ### Module Guide
 
