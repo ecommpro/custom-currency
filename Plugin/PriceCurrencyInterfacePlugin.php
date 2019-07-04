@@ -24,4 +24,21 @@ class PriceCurrencyInterfacePlugin
 
         return [$price, $currency['precision']];
     }
+
+    public function aroundRound(\Magento\Framework\Pricing\PriceCurrencyInterface $subject,
+        callable $proceed,
+        $price
+    ) {
+        $currency = $this->config->getCurrency();
+        
+        if (!$currency) {
+            return $proceed($price);
+        }
+
+        $currency = array_merge([
+            'precision' => 2,
+        ], $currency);
+
+        return round($price, $currency['precision']);
+    }
 }
