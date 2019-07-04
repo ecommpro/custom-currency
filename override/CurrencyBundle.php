@@ -32,7 +32,12 @@ class CurrencyBundle extends DataBundle
         $bundle = parent::get($locale);
         $bundleAsArray = $this->toArray($bundle);
 
-        foreach($currencies as $currency) {
+	foreach($currencies as $currency) {
+
+	   if (!isset($currency['plural'])) {
+               $currency['plural'] = $currency['singular'];
+	   }
+
             $bundleAsArray['Currencies'][$currency['code']] = [
                 $currency['code'],
                 $currency['singular'],
