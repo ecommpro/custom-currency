@@ -4,19 +4,16 @@ namespace EcommPro\CustomCurrency\Console\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputOption;
 
 use Magento\Framework\Setup\SchemaSetupInterface;
-use EcommPro\CustomCurrency\Setup\PriceDecimalFixer;
+use EcommPro\CustomCurrency\Setup\DecimalHighPrecision;
 
 
-class PriceDecimalFixerCommand extends Command
+class DecimalHighPrecisionCommand extends Command
 {
-    protected $productCreateService;
-
     public function __construct(
         SchemaSetupInterface $setup,
-        PriceDecimalFixer $fixer
+        DecimalHighPrecision $fixer
 
     ) {
         parent::__construct();
@@ -27,8 +24,8 @@ class PriceDecimalFixerCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('custom-currency:price-decimal-fixer')
-            ->setDescription('CustomCurrency price decimal fix precision.')
+            ->setName('custom-currency:decimal-high-precision')
+            ->setDescription('CustomCurrency decimal hight precision.')
         ;
     }
 

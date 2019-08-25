@@ -5,7 +5,7 @@ use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 
-class PriceDecimalFixer
+class DecimalHighPrecision
 {
     public function execute(SchemaSetupInterface $setup) {
         $installer = $setup;
@@ -52,14 +52,16 @@ class PriceDecimalFixer
                     continue;
                 }
 
-                if ((int)($column['SCALE']) !== 4) {
+                if ((int)($column['SCALE']) === 8) {
                     continue;
                 }
 
                 $precision = $column['PRECISION'] + 4;
 
                 $columnData = $connection->getColumnCreateByDescribe($column);
-                $columnData['length'] = $precision . ',8';
+                $length = $precision . ',8';
+
+                $columnData['length'] = $length;
 
                 try {
                     $connection->modifyColumn(
@@ -67,6 +69,7 @@ class PriceDecimalFixer
                         $columnName,
                         $columnData
                     );
+                    echo "[ii] Chage column $table::$columnName to DECIMAL($length)\n";
                 } catch(\PDOException $e) {
                     echo "[EE] $table::$columnName\n";
                 }

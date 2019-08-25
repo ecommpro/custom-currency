@@ -4,11 +4,11 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="PriceDecimalFixer" xsi:type="object">EcommPro\CustomCurrency\Console\Command\PriceDecimalFixerCommand</item>
+                <item name="DecimalHighPrecision" xsi:type="object">EcommPro\CustomCurrency\Console\Command\DecimalHighPrecisionCommand</item>
             </argument>
         </arguments>
     </type>
-    
+
     <type name="Magento\Framework\Locale\Config">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\LocaleConfigPlugin" sortOrder="1" />
     </type>
@@ -32,8 +32,6 @@
     <type name="Magento\Framework\Pricing\PriceCurrencyInterface">
         <plugin name="EcommPro_CustomCurrency_PriceCurrencyInterface" type="EcommPro\CustomCurrency\Plugin\PriceCurrencyInterfacePlugin" sortOrder="1" />
     </type>
-
-
 
     <type name="Magento\Catalog\Block\Product\View">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CatalogProductViewPlugin" sortOrder="1" />
@@ -59,7 +57,9 @@
         <plugin name="html-currency-in-cart" type="EcommPro\CustomCurrency\Plugin\CheckoutBlockCartGridPlugin" sortOrder="999"/>
     </type>
 
-    
+
+
+
 
     <!-- Temporal fix to 2.1 problem with eav attributes: https://github.com/magento/magento2/issues/5339 -->
     <type name="Magento\Eav\Model\Entity\AttributeCache">
@@ -76,6 +76,7 @@
             <argument name="filterPool" xsi:type="object" shared="false">RefGridFilterPool</argument>
         </arguments>
     </type>
+
     <virtualType name="RefGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
         <arguments>
             <argument name="appliers" xsi:type="array">
