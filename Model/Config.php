@@ -6,7 +6,7 @@ class Config
     static $enabledHtml = false;
 
     protected $_additionalCurrencies = [
-        [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],        
+        [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],
         [ 'code' => 'BTC', 'singular' => 'Bitcoin', 'plural' => 'Bitcoins' ],
         [ 'code' => 'sat', 'singular' => 'Satoshi', 'plural' => 'Satoshis' ],
         [ 'code' => 'ETH', 'singular' => 'Ethereum', 'plural' => 'Ethereums' ],
@@ -96,7 +96,7 @@ class Config
 
         return $this->cache[$key] = false;
     }
-    
+
     public function getCurrencies()
     {
         //echo $this->assetRepo->getUrl("EcommPro_CustomCurrency::image/star.svg");
@@ -116,7 +116,7 @@ class Config
         $collection->load();
 
         $currencies = [];
-        
+
         foreach($collection as $item) {
             $data = $item->getData();
 
@@ -124,7 +124,7 @@ class Config
                 $data['name'] = $data['code'];
             }
 
-            
+
             $data['singular'] = $data['name'];
             if (!empty($data['symbolimage'])) {
                 $data['symbolimage_src'] = $item->getSymbolimageSrc();
@@ -136,6 +136,14 @@ class Config
 
             if (empty($currency['symbol'])) {
                 $currency['symbol'] = $currency['code'];
+            }
+
+            if (empty($currency['precision'])) {
+                $currency['precision'] = 2;
+            }
+
+            if (empty($currency['format_precision'])) {
+                $currency['format_precision'] = $currency['precision'];
             }
 
             if (isset($currency['symbol_html']) && !empty($currency['symbol_html'])) {

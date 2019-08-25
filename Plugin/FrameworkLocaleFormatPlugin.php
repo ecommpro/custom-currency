@@ -13,7 +13,7 @@ class FrameworkLocaleFormatPlugin
         $this->config = $config;
         $this->appState = $appState;
     }
-    
+
 
     public function afterGetPriceFormat(\Magento\Framework\Locale\FormatInterface $subject, $result)
     {
@@ -27,9 +27,10 @@ class FrameworkLocaleFormatPlugin
         $result['pattern'] = str_replace('{{amount}}', '%s', $pattern);
 
         $currency = $this->config->getCurrency();
-        if (isset($currency['precision'])) {
-            $result['precision'] = $currency['precision'];
-            $result['requiredPrecision'] = $currency['precision'];
+
+        if (isset($currency['format_precision'])) {
+            $result['precision'] = $currency['format_precision'];
+            $result['requiredPrecision'] = $currency['format_precision'];
         }
         return $result;
     }

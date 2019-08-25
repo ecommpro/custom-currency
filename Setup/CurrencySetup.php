@@ -55,9 +55,19 @@ class CurrencySetup extends EavSetup
 
         $attributes['precision'] = [
             'type' => 'static',
-            'label' => 'Code',
+            'label' => 'Precision',
             'input' => 'text',
             'required' => true,
+            'sort_order' => 10,
+            'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+            'group' => 'General',
+        ];
+
+        $attributes['format_precision'] = [
+            'type' => 'static',
+            'label' => 'Format Precision',
+            'input' => 'text',
+            'required' => false,
             'sort_order' => 10,
             'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
             'group' => 'General',

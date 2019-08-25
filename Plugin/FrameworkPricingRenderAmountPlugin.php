@@ -13,7 +13,7 @@ class FrameworkPricingRenderAmountPlugin
         \EcommPro\CustomCurrency\Model\Config $config
     )
     {
-        $this->locale = $currency->getLocale();        
+        $this->locale = $currency->getLocale();
         $this->config = $config;
     }
 
@@ -29,8 +29,9 @@ class FrameworkPricingRenderAmountPlugin
             'locale' => $locale,
             'number_format' => '#,##0.00',
         ];
-        if (isset($currency['precision'])) {
-            $formatOptions['precision'] = $currency['precision'];
+
+        if (isset($currency['format_precision'])) {
+            $formatOptions['precision'] = $currency['format_precision'];
         }
 
         $amountStr = \Zend_Locale_Format::toNumber($amount, $formatOptions);
@@ -41,7 +42,7 @@ class FrameworkPricingRenderAmountPlugin
         if ($includeContainer) {
             return '<span class="price">' . $result . '</span>';
         }
-        
+
         return $result;
     }
 }
