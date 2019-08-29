@@ -9,14 +9,7 @@ use Magento\Framework\DB\Ddl\Table;
 
 class UpgradeSchema implements UpgradeSchemaInterface
 {
-    public function __construct(PriceDecimalFixer $priceDecimalFixer)
-    {
-        $this->priceDecimalFixer = $priceDecimalFixer;
-    }
-
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context) {
-        // $this->priceDecimalFixer->execute($setup, $context);
-
         $setup->startSetup();
 
         $tableName = CurrencySetup::ENTITY_TYPE_CODE . '_entity';

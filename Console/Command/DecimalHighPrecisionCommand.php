@@ -25,7 +25,7 @@ class DecimalHighPrecisionCommand extends Command
     {
         $this
             ->setName('custom-currency:decimal-high-precision')
-            ->setDescription('CustomCurrency decimal hight precision.')
+            ->setDescription('CustomCurrency decimal hight precision. [CAUTION: USE AT YOUR OWN RISK]')
         ;
     }
 
