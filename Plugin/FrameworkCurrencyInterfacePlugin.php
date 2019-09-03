@@ -35,12 +35,12 @@ class FrameworkCurrencyInterfacePlugin
             'number_format' => '#,##0.00',
         ];
 
-        if (isset($currency['precision'])) {
-            $formatOptions['precision'] = $currency['precision'];
+        if (isset($currency['format_precision'])) {
+            $formatOptions['precision'] = $currency['format_precision'];
         }
 
         //$format = \Zend_Locale_Data::getContent($locale, 'currencynumber');
-        
+
         $valueStr = \Zend_Locale_Format::toNumber($value, $formatOptions);
         $pattern = $this->config->getPattern();
 

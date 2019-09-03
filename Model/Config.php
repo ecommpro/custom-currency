@@ -4,6 +4,7 @@ namespace EcommPro\CustomCurrency\Model;
 class Config
 {
     static $enabledHtml = false;
+    static $override = [];
 
     protected $_additionalCurrencies = [
         [ 'code' => 'POINT', 'singular' => 'Point', 'plural' => 'Points' ],
@@ -78,6 +79,12 @@ class Config
     }
 
     public function getCurrency($code = null)
+    {
+        $currency = $this->_getCurrency($code);
+        return array_merge($currency, self::$override);
+    }
+
+    public function _getCurrency($code = null)
     {
         $storeId = $this->storeManager->getStore()->getStoreId();
         if ($code === null) {
@@ -249,6 +256,16 @@ class Config
         } else {
             return $this->getPatternTxt();
         }
+    }
+
+    public static function beginOverride($settings)
+    {
+        self::$override = $settings;
+    }
+
+    public static function endOverride()
+    {
+        self::$override = [];
     }
 
 

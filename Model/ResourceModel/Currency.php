@@ -44,7 +44,7 @@ class Currency extends AbstractEntity
         $this->setType(CurrencySetup::ENTITY_TYPE_CODE);
         $this->setConnection(CurrencySetup::ENTITY_TYPE_CODE . '_read', CurrencySetup::ENTITY_TYPE_CODE . '_write');
 
-        
+
 
         $this->_storeManager = $storeManager;
     }
@@ -142,7 +142,7 @@ class Currency extends AbstractEntity
             $data['store_id'] = Store::DEFAULT_STORE_ID;
             $this->_attributeValuesToSave[$table][] = $data;
         }
-        
+
         return $this;
     }
 }

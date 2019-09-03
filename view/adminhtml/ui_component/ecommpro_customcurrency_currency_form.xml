@@ -143,7 +143,6 @@
                     <item name="source" xsi:type="string">main_fieldset</item>
                     <item name="sortOrder" xsi:type="number">25</item>
                     <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
-                    <item name="default" xsi:type="number">2</item>
                 </item>
             </argument>
         </field>
