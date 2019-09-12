@@ -145,11 +145,11 @@ class Config
                 $currency['symbol'] = $currency['code'];
             }
 
-            if (empty($currency['precision'])) {
+            if ('' === trim($currency['precision'])) {
                 $currency['precision'] = 2;
             }
 
-            if (empty($currency['format_precision'])) {
+            if ('' === trim($currency['format_precision'])) {
                 $currency['format_precision'] = $currency['precision'];
             }
 
