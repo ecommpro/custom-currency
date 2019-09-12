@@ -11,7 +11,7 @@
     composer require ecommpro/module-custom-currency
 
 Execute the following commands
-  
+
     php bin/magento module:enable EcommPro_CustomCurrency
     php bin/magento setup:upgrade
 
@@ -124,7 +124,7 @@ Add the currencies as the array of arrays argument of the `EcommPro\CustomCurren
 
 ## Internals
 
-This module is based in these observations:
+This module is based on these observations:
 
 - Magento class loader doesn't load a class if it was previously loaded.
 - Magento doesn't check the type of PHP ResourceBundle returned by `Magento\Framework\Locale\Bundle\CurrencyBundle` and simply uses it as an array, as it implements array access and iteration.
