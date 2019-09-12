@@ -45,10 +45,6 @@
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\SwatchesProductRendererListingConfigurablePlugin" sortOrder="1" />
     </type>
 
-    <type name="Magento\Checkout\CustomerData\Cart">
-        <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutCustomerDataCartPlugin" sortOrder="999"/>
-    </type>
-
     <type name="Magento\Checkout\Model\DefaultConfigProvider">
         <plugin name="EcommPro_CustomCurrency" type="EcommPro\CustomCurrency\Plugin\CheckoutDefaultConfigProviderPlugin" sortOrder="999"/>
     </type>
