@@ -81,7 +81,7 @@ class Config
     public function getCurrency($code = null)
     {
         $currency = $this->_getCurrency($code);
-        return array_merge($currency, self::$override);
+        return $currency ? array_merge($currency, self::$override) : $currency;
     }
 
     public function _getCurrency($code = null)
