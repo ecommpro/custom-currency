@@ -7,13 +7,14 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 class FrameworkPricingRenderAmountPlugin
 {
     protected $config;
+    protected $localeResolver;
 
     public function __construct(
-        \Magento\Framework\CurrencyInterface $currency,
+        \Magento\Framework\Locale\Resolver $localeResolver,
         \EcommPro\CustomCurrency\Model\Config $config
     )
     {
-        $this->locale = $currency->getLocale();
+        $this->localeResolver = $localeResolver;
         $this->config = $config;
     }
 
@@ -24,7 +25,7 @@ class FrameworkPricingRenderAmountPlugin
             return $proceed($amount, $includeContainer, $precision);
         }
 
-        $locale = $this->locale;
+        $locale = $this->localeResolver->getLocale();
         $formatOptions = [
             'locale' => $locale,
             'number_format' => '#,##0.00',

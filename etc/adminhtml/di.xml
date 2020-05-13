@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Config\Model\Config\Structure\Data">
+        <plugin name="ensure-admin-tab-exists" type="EcommPro\CustomCurrency\Plugin\Adminhtml\EnsureTabExistsPlugin" sortOrder="999"/>
+    </type>
+</config>

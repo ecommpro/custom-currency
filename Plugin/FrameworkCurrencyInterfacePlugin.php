@@ -5,16 +5,19 @@ class FrameworkCurrencyInterfacePlugin
 {
     protected $config;
     protected $appState;
+    protected $localeResolver;
 
     public function __construct(
         \EcommPro\CustomCurrency\Model\Config $config,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\App\State $appState
+        \Magento\Framework\App\State $appState,
+        \Magento\Framework\Locale\Resolver $localeResolver
     )
     {
         $this->config = $config;
         $this->storeManager = $storeManager;
         $this->appState = $appState;
+        $this->localeResolver = $localeResolver;
     }
 
     //public function toCurrency($value = null, array $options = array())
@@ -29,7 +32,7 @@ class FrameworkCurrencyInterfacePlugin
             return $proceed(...$args);
         }
 
-        $locale = $subject->getLocale();
+        $locale = $this->localeResolver->getLocale();
         $formatOptions = [
             'locale' => $locale,
             'number_format' => '#,##0.00',
