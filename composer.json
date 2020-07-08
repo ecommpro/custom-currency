@@ -2,7 +2,7 @@
     "name": "ecommpro/module-custom-currency",
     "description": "Custom Currency for Magento 2",
     "type": "magento2-module",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "license": "MIT",
     "authors": [
         {
