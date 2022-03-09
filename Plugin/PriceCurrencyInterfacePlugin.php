@@ -10,7 +10,7 @@ class PriceCurrencyInterfacePlugin
 
     public function beforeRoundPrice(\Magento\Framework\Pricing\PriceCurrencyInterface $subject,
         $price,
-        $precision
+        $precision = 2
     ) {
         $currency = $this->config->getCurrency();
         
