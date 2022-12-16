@@ -68,14 +68,18 @@ class Config
             return $this->cache['allowed'];
         }
 
-        $connection = $this->resourceConnection->getConnection();
-        $tableName = $this->resourceConnection->getTableName('ecommpro_currency_entity');
-
-        if (!$connection->isTableExists($tableName)) {
+        try {
+            $connection = $this->resourceConnection->getConnection();
+            $tableName = $this->resourceConnection->getTableName('ecommpro_currency_entity');
+    
+            if (!$connection->isTableExists($tableName)) {
+                return [];
+            }
+    
+            return $this->cache['allowed'] = $connection->fetchCol("SELECT code FROM $tableName");
+        } catch(\Exception $e) {
             return [];
         }
-
-        return $this->cache['allowed'] = $connection->fetchCol("SELECT code FROM $tableName");
     }
 
     public function getCurrency($code = null)
